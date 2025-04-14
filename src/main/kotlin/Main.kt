@@ -62,12 +62,19 @@ fun main() {
      */
 
 
+    // reading
     val fileName = "costOfLiving.csv"
     val csvFile = File(fileName)
     val csvFileReader = CsvFileReader(csvFile)
+
+    // parsing
     val csvParser = CitiesCsvParser()
+
+    // di repo
     val citiesRepo: CitiesRepo = CsvCitiesRepo(csvFileReader, csvParser)
 
+
+    // ui
     val getCitiesNamesWithTopSalaryUseCase = GetCitiesNamesWithTopSalaryUseCase(citiesRepo)
     println(getCitiesNamesWithTopSalaryUseCase.getTopNCitiesNames(n = 4))
 
