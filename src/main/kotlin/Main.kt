@@ -3,8 +3,12 @@ package org.example
 import org.example.data.utils.CitiesCsvParser
 import org.example.data.repo_impl.CsvCitiesRepo
 import org.example.data.utils.CsvFileReader
+import org.example.di.appModule
+import org.example.di.useCaseModule
 import org.example.logic.repo.CitiesRepo
 import org.example.logic.use_case.GetCitiesNamesWithTopSalaryUseCase
+import org.koin.core.context.startKoin
+import org.koin.java.KoinJavaComponent.getKoin
 import java.io.File
 
 fun main() {
@@ -61,22 +65,38 @@ fun main() {
 
      */
 
+    /*
+    di without koin
+     // reading
+        val fileName = "costOfLiving.csv"
+        val csvFile = File(fileName)
+        val csvFileReader = CsvFileReader(csvFile)
 
-    // reading
-    val fileName = "costOfLiving.csv"
-    val csvFile = File(fileName)
-    val csvFileReader = CsvFileReader(csvFile)
+        // parsing
+        val csvParser = CitiesCsvParser()
 
-    // parsing
-    val csvParser = CitiesCsvParser()
-
-    // di repo
-    val citiesRepo: CitiesRepo = CsvCitiesRepo(csvFileReader, csvParser)
+        // di repo
+        val citiesRepo: CitiesRepo = CsvCitiesRepo(csvFileReader, csvParser)
 
 
-    // ui
-    val getCitiesNamesWithTopSalaryUseCase = GetCitiesNamesWithTopSalaryUseCase(citiesRepo)
-    println(getCitiesNamesWithTopSalaryUseCase.getTopNCitiesNames(n = 4))
+        // ui
+        val getCitiesNamesWithTopSalaryUseCase = GetCitiesNamesWithTopSalaryUseCase(citiesRepo)
+        println(getCitiesNamesWithTopSalaryUseCase.getTopNCitiesNames(n = 4))
+
+     */
+
+
+    /*
+     with koin
+
+      startKoin {
+             modules(appModule, useCaseModule)
+         }
+
+         // use case
+         val getCitiesNamesWithTopSalaryUseCase :GetCitiesNamesWithTopSalaryUseCase = getKoin().get()
+         println(getCitiesNamesWithTopSalaryUseCase.getTopNCitiesNames(n = 4))
+ */
 
 
 }
