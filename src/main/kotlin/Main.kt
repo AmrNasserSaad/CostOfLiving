@@ -4,6 +4,7 @@ import org.example.data.utils.CitiesCsvParser
 import org.example.data.repo_impl.CsvCitiesRepo
 import org.example.data.utils.CsvFileReader
 import org.example.di.appModule
+import org.example.di.useCaseModule
 import org.example.logic.repo.CitiesRepo
 import org.example.logic.use_case.GetCitiesNamesWithTopSalaryUseCase
 import org.koin.core.context.startKoin
@@ -84,16 +85,18 @@ fun main() {
 
      */
 
-    /*
-    with koin
-     startKoin {
-            modules(appModule)
-        }
 
-        // use case
-        val getCitiesNamesWithTopSalaryUseCase :GetCitiesNamesWithTopSalaryUseCase = getKoin().get()
-        println(getCitiesNamesWithTopSalaryUseCase.getTopNCitiesNames(n = 4))
-     */
+    /*
+     with koin
+
+      startKoin {
+             modules(appModule, useCaseModule)
+         }
+
+         // use case
+         val getCitiesNamesWithTopSalaryUseCase :GetCitiesNamesWithTopSalaryUseCase = getKoin().get()
+         println(getCitiesNamesWithTopSalaryUseCase.getTopNCitiesNames(n = 4))
+ */
 
 
 }

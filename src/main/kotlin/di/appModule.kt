@@ -14,9 +14,7 @@ val appModule = module {
     single { CsvFileReader(get()) }
     single { CitiesCsvParser() }
 
-    single<CitiesRepo> { CsvCitiesRepo(get(),get()) }
-
-    single { GetCitiesNamesWithTopSalaryUseCase(get()) }
+    single<CitiesRepo> { CsvCitiesRepo(get(), get()) }
 
 
     // single { Ui(get(),get(),get())}
